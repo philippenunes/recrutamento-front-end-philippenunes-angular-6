@@ -3,7 +3,7 @@ export class Usuario {
   password: string;
   fullName: string;
   birthDate: string;
-  zipCode: string;
+  zipCode: number;
   streetName: string;
   number: number;
   complement: string;
@@ -11,4 +11,6 @@ export class Usuario {
   country: string;
   state: string;
   city: string;
+
+  constructor() {}
 }

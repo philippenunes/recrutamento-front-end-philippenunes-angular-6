@@ -1,52 +1,52 @@
 <div class="container">
   <div class="form-container">
       <!-- Card -->
-      <div class="card mx-xl-5">
+      <div class="card mx-xl-5"> aqui{{user}}
         <!-- Card body -->
         <div class="card-body ">
             <form ng-submit="cadastraUsuario()">
               <p class="h4 text-center py-4">Formulário de cadastro</p>
 
               <label class="grey-text font-weight-light">E-mail</label>
-              <input type="email" class="form-control form-control-sm" (ngModel)="usuario.email" id="email" required>
+              <input type="email" class="form-control form-control-sm" [(ngModel)]="usuario.email" id="email" required>
 
-              <label class="grey-text font-weight-light" [class.hidden]="!senhaError">Senha</label>
-              <span class="error font-weight-light" [class.hidden]="senhaError"><b>Senhas não coincidem</b></span>
-              <input type="password" class="form-control form-control-sm" (ngModel)="usuario.password" id="password" required>
+              <label class="grey-text font-weight-light" [hidden]="senhaError">Senha</label>
+              <span class="error font-weight-light" [hidden]="!senhaError"><b>Senhas não coincidem</b></span>
+              <input type="password" class="form-control form-control-sm" [(ngModel)]="usuario.password" id="password" required>
 
-              <label class="grey-text font-weight-light" [class.hidden]="!senhaError">Confirma a senha</label>
-              <span class="error font-weight-light" [class.hidden]="senhaError"><b>Senhas não coincidem</b></span>
-              <input type="password" class="form-control form-control-sm" (ngModel)="senhaComparada" id="passwordConfirmation" ng-blur="confirmaSenha()" required>
+              <label class="grey-text font-weight-light" [hidden]="senhaError">Confirma a senha</label>
+              <span class="error font-weight-light" [hidden]="!senhaError"><b>Senhas não coincidem</b></span>
+              <input type="password" class="form-control form-control-sm" [(ngModel)]="senhaComparada" id="passwordConfirmation" (blur)="confirmaSenha()" required>
 
               <label class="grey-text font-weight-light">Nome completo</label>
-              <input type="text" class="form-control form-control-sm" (ngModel)="usuario.fullName" id="fullName" required>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="usuario.fullName" id="fullName" required>
 
               <label class="grey-text font-weight-light">Data de nascimento</label>
-              <input type="date" class="form-control form-control-sm" (ngModel)="usuario.birthDate" id="birthDate" required>
+              <input type="date" class="form-control form-control-sm" [(ngModel)]="usuario.birthDate" id="birthDate" required>
 
               <label class="grey-text font-weight-light">CEP </label>
-              <input type="text" class="form-control form-control-sm" maxlength="9" id="zipCode" (ngModel)="usuario.zipCode" ng-blur="pesquisacep()" required>
+              <input type="text" class="form-control form-control-sm" maxlength="9" id="zipCode" [(ngModel)]="usuario.zipCode" (blur)="pesquisacep()" required>
 
               <label class="grey-text font-weight-light">Rua</label>
-              <input type="text" value="" class="form-control form-control-sm" (ngModel)="usuario.streetName" id="streetName" required>
+              <input type="text" value="" class="form-control form-control-sm" [(ngModel)]="usuario.streetName" id="streetName" required>
 
               <label class="grey-text font-weight-light">Número</label>
-              <input type="text" class="form-control form-control-sm" (ngModel)="usuario.number" id="number" required>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="usuario.number" id="number" required>
 
               <label class="grey-text font-weight-light">Complemento</label>
-              <input type="text" class="form-control form-control-sm" (ngModel)="usuario.complement" id="complement">
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="usuario.complement" id="complement">
 
               <label class="grey-text font-weight-light">Bairro</label>
-              <input type="text" value="" class="form-control form-control-sm" (ngModel)="usuario.neighbourhood" id="neighbourhood">
+              <input type="text" value="" class="form-control form-control-sm" [(ngModel)]="usuario.neighbourhood" id="neighbourhood">
 
               <label class="grey-text font-weight-light">País</label>
-              <select id="country"  class="form-control form-control-sm" (ngModel)="usuario.country" ng-options="pais.texto for pais in paises" required></select>
+              <select id="country"  class="form-control form-control-sm" [(ngModel)]="usuario.country" ng-options="pais.texto for pais in paises" required></select>
 
               <label class="grey-text font-weight-light">Estado</label>
-              <input type="text" value="" class="form-control form-control-sm" (ngModel)="usuario.state" id="state" required>
+              <input type="text" value="" class="form-control form-control-sm" [(ngModel)]="usuario.state" id="state" required>
 
               <label class="grey-text font-weight-light">Cidade</label>
-              <input type="text" value="" class="form-control form-control-sm" (ngModel)="usuario.city" id="city" required>
+              <input type="text" value="" class="form-control form-control-sm" [(ngModel)]="usuario.city" id="city" required>
 
               <div class="text-center py-4 mt-3">
                 <button type="submit" class="btn btn-outline-purple">Registrar</button>

@@ -6,6 +6,7 @@ import { Usuario } from './user';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { Hero } from './hero';
 
 @Component({
   selector: 'app-user-form',
@@ -14,7 +15,8 @@ import * as moment from 'moment';
 })
 export class UserFormComponent implements OnInit {
 
-  usuario: Usuario;
+  usuario = new Usuario();
+  user = 'teste';
   paises: string[];
   senhaComparada: string;
   senhaError = false;

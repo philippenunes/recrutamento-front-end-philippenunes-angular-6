@@ -4,7 +4,7 @@ import { UserFormService } from './user-form.service';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './user';
 import { ToastrService } from 'ngx-toastr';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -24,12 +24,12 @@ export class UserFormComponent implements OnInit {
     private paisesService: PaisesService,
     private cepService: CepService,
     private toastr: ToastrService,
-    private location: Location) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-  verificaStatus5XX() {
+  verificaStatus5XX(status) {
     if (Array.from(status.toString()).includes('5')) {
         return true;
     } else {
@@ -68,25 +68,20 @@ export class UserFormComponent implements OnInit {
 
   cadastraUsuario() {
     this.validaFormulario();
-    userFormService.cadastraUsuarioImproving(this.usuario)
+    this.userFormService.cadastrarUsuarioImproving(this.usuario)
     .subscribe(
       response => {
-        this.location.path();
-        toastr.success('Cadastro realizado com sucesso!', 'Oba! :)');
-        this.location.
-    })
-
-      .then(response => {
-        toastr.success('Cadastro realizado com sucesso!', 'Oba! :)');
-        $location.path('/dashboard');
-      }).catch(err => {
-      if(err.status == 400) {
-        toastr.warning('Verifique os campos do formulário!', 'Dados inválidos!');
-      } else if (err.status == 409) {
-        toastr.warning('O e-mail informado já existe!', 'Dados inválidos!');
-      } else if (err.status == 408 || verificaStatus5XX(err.status)) {
-        toastr.warning('Tente novamente mais tarde!', 'Erro interno no servidor!');
-      }
-    })
-}
+        this.toastr.success('Cadastro realizado com sucesso!', 'Oba! :)');
+        this.router.navigate(['dashboard']);
+      },
+        error => {
+          if (error.status === 400) {
+            this.toastr.warning('Verifique os campos do formulário!', 'Dados inválidos!');
+          } else if (error.status === 409) {
+            this.toastr.warning('O e-mail informado já existe!', 'Dados inválidos!');
+          } else if (error.status === 408 || this.verificaStatus5XX(error.status)) {
+            this.toastr.warning('Tente novamente mais tarde!', 'Erro interno no servidor!');
+          }
+        });
+    }
 }

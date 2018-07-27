@@ -1,7 +1,7 @@
 export class Usuario {
   email: string;
   password: string;
-  nome: string;
+  fullName: string;
   birthDate: string;
   zipCode: string;
   streetName: string;
